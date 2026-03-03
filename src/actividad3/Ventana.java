@@ -1,108 +1,88 @@
 package actividad3;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.JTextField;
 
-public class Ventana extends JFrame{
-	public Ventana(){
-		this.setVisible(true);
-		this.setSize(600, 650);
-		this.setLocationRelativeTo(null);
-		this.setMinimumSize(new Dimension(200,200));
-		this.setMaximumSize(new Dimension(700,700));
-		this.setTitle("calculadora");
-		this.setBackground(Color.BLACK);
-		this.setLocation(100,100);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
-		this.crearInterfaz();
-		this.getContentPane().setBackground(Color.BLACK);
-	}
+public class Ventana extends JFrame {
 
-	public void crearInterfaz() {
+    public Ventana() {
 
-		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setBounds(0,0,600,650);
-		panelPrincipal.setLayout(null);
-		panelPrincipal.setBackground(new Color(15, 32, 60));
-		this.add(panelPrincipal);
+        this.setSize(600, 650);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Calculadora");
+        this.setMinimumSize(new Dimension(300,400));
+        this.setMaximumSize(new Dimension(700,700));
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.getContentPane().setBackground(Color.BLACK);
+        this.setLayout(new BorderLayout());
 
-		// Pantalla
-		JLabel pantalla = new JLabel("0");
-		pantalla.setBounds(40,30,500,90);
-		pantalla.setOpaque(true);
-		pantalla.setBackground(new Color(25, 50, 90));
-		pantalla.setForeground(Color.WHITE);
-		pantalla.setHorizontalAlignment(JLabel.RIGHT);
-		pantalla.setFont(new Font("Segoe UI", Font.BOLD, 36));
-		pantalla.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-		panelPrincipal.add(pantalla);
+        iniciarComponentes();
 
-		
-		Color colorNumeros = new Color(40, 80, 140);
-		Color colorOperadores = new Color(0, 153, 255);
+        this.setVisible(true);
+    }
 
-		Font fuenteBotones = new Font("Segoe UI", Font.BOLD, 22);
-		Border borde = BorderFactory.createLineBorder(Color.WHITE, 2);
+    public void iniciarComponentes() {
 
-		// Fila 1
-		JButton btn7 = crearBoton("7", 40,150,colorNumeros,fuenteBotones,borde);
-		JButton btn8 = crearBoton("8", 180,150,colorNumeros,fuenteBotones,borde);
-		JButton btn9 = crearBoton("9", 320,150,colorNumeros,fuenteBotones,borde);
-		JButton btnClear = crearBoton("C", 460,150,colorOperadores,fuenteBotones,borde);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout(10,10));
+        mainPanel.setBackground(Color.WHITE);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        this.add(mainPanel);
 
-		// Fila 2
-		JButton btn4 = crearBoton("4", 40,260,colorNumeros,fuenteBotones,borde);
-		JButton btn5 = crearBoton("5", 180,260,colorNumeros,fuenteBotones,borde);
-		JButton btn6 = crearBoton("6", 320,260,colorNumeros,fuenteBotones,borde);
-		JButton btnSuma = crearBoton("+", 460,260,colorOperadores,fuenteBotones,borde);
+       
+        JTextField display = new JTextField();
+        display.setFont(new Font("Arial", Font.BOLD, 48));
+        display.setHorizontalAlignment(JTextField.RIGHT);
+        mainPanel.add(display, BorderLayout.NORTH);
 
-		// Fila 3
-		JButton btn1 = crearBoton("1", 40,370,colorNumeros,fuenteBotones,borde);
-		JButton btn2 = crearBoton("2", 180,370,colorNumeros,fuenteBotones,borde);
-		JButton btn3 = crearBoton("3", 320,370,colorNumeros,fuenteBotones,borde);
-		JButton btnResta = crearBoton("-", 460,370,colorOperadores,fuenteBotones,borde);
+        
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(4,4,10,10));
+        centerPanel.setBackground(Color.yellow);
 
-		// Fila 4
-		JButton btn0 = crearBoton("0", 40,480,colorNumeros,fuenteBotones,borde);
-		JButton btnMulti = crearBoton("x", 180,480,colorOperadores,fuenteBotones,borde);
-		JButton btnDiv = crearBoton("/", 320,480,colorOperadores,fuenteBotones,borde);
-		JButton btnIgual = crearBoton("=", 460,480,colorOperadores,fuenteBotones,borde);
+     
+        centerPanel.add(new JButton("7"));
+        centerPanel.add(new JButton("8"));
+        centerPanel.add(new JButton("9"));
+        centerPanel.add(new JButton("/"));
+        centerPanel.add(new JButton("4"));
+        centerPanel.add(new JButton("5"));
+        centerPanel.add(new JButton("6"));
+        centerPanel.add(new JButton("*"));
+        centerPanel.add(new JButton("1"));
+        centerPanel.add(new JButton("2"));
+        centerPanel.add(new JButton("3"));
+        centerPanel.add(new JButton("-"));
+        centerPanel.add(new JButton("+/-"));
+        centerPanel.add(new JButton("0"));
+        centerPanel.add(new JButton("."));
+        centerPanel.add(new JButton("+"));
 
-		panelPrincipal.add(btn7); panelPrincipal.add(btn8); panelPrincipal.add(btn9); panelPrincipal.add(btnClear);
-		panelPrincipal.add(btn4); panelPrincipal.add(btn5); panelPrincipal.add(btn6); panelPrincipal.add(btnSuma);
-		panelPrincipal.add(btn1); panelPrincipal.add(btn2); panelPrincipal.add(btn3); panelPrincipal.add(btnResta);
-		panelPrincipal.add(btn0); panelPrincipal.add(btnMulti); panelPrincipal.add(btnDiv); panelPrincipal.add(btnIgual);
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
 
-		panelPrincipal.repaint();
-		panelPrincipal.revalidate();
-	}
+        // PANEL INFERIOR
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new FlowLayout());
+        southPanel.setBackground(Color.GREEN);
 
-	
-	public JButton crearBoton(String texto, int x, int y, Color fondo, Font fuente, Border borde) {
+        southPanel.add(new JButton("AC"));
+        southPanel.add(new JButton("%"));
+        southPanel.add(new JButton("delete"));
+        southPanel.add(new JButton("="));
 
-		JButton boton = new JButton(texto);
-		boton.setBounds(x,y,120,90);
-		boton.setFont(fuente);
-		boton.setForeground(Color.WHITE);
-		boton.setBackground(fondo);
-		boton.setFocusPainted(false);
-		boton.setBorder(borde);
-
-		return boton;
-	}
-
-	public static void main(String[] args) {
-		new Ventana();
-	}
+        mainPanel.add(southPanel, BorderLayout.SOUTH);
+    }
 }
+
 		
 	
